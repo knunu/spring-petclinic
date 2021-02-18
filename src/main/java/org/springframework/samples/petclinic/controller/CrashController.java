@@ -13,35 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.controller;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as
- * a base class for objects needing these properties.
+ * Controller used to showcase what happens when an exception is thrown
  *
- * @author Ken Krebs
- * @author Juergen Hoeller
+ * @author Michael Isvy
+ * <p/>
+ * Also see how a view that resolves to "error" has been added ("error.html").
  */
-@MappedSuperclass
-public class NamedEntity extends BaseEntity {
+@Controller
+class CrashController {
 
-	@Column(name = "name")
-	private String name;
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return this.getName();
+	@GetMapping("/oups")
+	public String triggerException() {
+		throw new RuntimeException(
+				"Expected: controller used to showcase what " + "happens when an exception is thrown");
 	}
 
 }

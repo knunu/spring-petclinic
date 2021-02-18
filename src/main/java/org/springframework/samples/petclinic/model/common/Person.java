@@ -13,8 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.springframework.samples.petclinic.model.common;
 
-/**
- * The classes in this package represent utilities used by the domain.
- */
-package org.springframework.samples.petclinic.model;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
+
+@Getter
+@Setter
+@MappedSuperclass
+public class Person extends BaseEntity {
+
+	@Column(name = "first_name")
+	@NotEmpty
+	private String firstName;
+
+	@Column(name = "last_name")
+	@NotEmpty
+	private String lastName;
+}
