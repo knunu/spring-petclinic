@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.samples.petclinic.configuration.CacheConfiguration;
 import org.springframework.samples.petclinic.dto.VetDto;
 import org.springframework.samples.petclinic.model.vet.Specialty;
 import org.springframework.samples.petclinic.model.vet.Vet;
@@ -33,6 +35,7 @@ public class VetService {
 		return vetRepository.findAll();
 	}
 
+	@Cacheable(value = CacheConfiguration.SERVICE_CACHE, key = "#id")
 	public Vet getVetById(Integer id) {
 		return vetRepository.findById(id).orElse(null);
 	}
