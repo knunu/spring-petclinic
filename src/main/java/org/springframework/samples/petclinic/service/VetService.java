@@ -1,20 +1,16 @@
 package org.springframework.samples.petclinic.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.samples.petclinic.dto.SpecialtyDto;
 import org.springframework.samples.petclinic.dto.VetDto;
 import org.springframework.samples.petclinic.model.vet.Specialty;
 import org.springframework.samples.petclinic.model.vet.Vet;
-import org.springframework.samples.petclinic.repository.SpecialtyRepository;
-import org.springframework.samples.petclinic.repository.VetRepository;
+import org.springframework.samples.petclinic.model.vet.SpecialtyRepository;
+import org.springframework.samples.petclinic.model.vet.VetRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
