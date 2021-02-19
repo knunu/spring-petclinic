@@ -1,3 +1,8 @@
+INSERT INTO members VALUES (1, 'Seonwoo', 'Kim', 'admin@hsca.net', 'admin!');
+
+INSERT INTO member_roles VALUES (1, 1, 'ADMIN');
+INSERT INTO member_roles VALUES (2, 1, 'VET');
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');

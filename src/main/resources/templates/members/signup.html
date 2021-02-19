@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'signup')}">
+
+<body>
+
+<h2>Sign up page</h2>
+<form th:object="${signupDto}" class="form-horizontal" id="add-member-form" method="post">
+  <div class="form-group has-feedback">
+    <input
+      th:replace="~{fragments/inputField :: input ('Email', 'email', 'text')}" />
+    <input
+      th:replace="~{fragments/inputField :: input ('Password', 'password', 'password')}" />
+    <input
+      th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+    <input
+      th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+    <input
+      th:replace="~{fragments/inputField :: input ('Admin?', 'admin', 'checkbox')}" />
+    <input
+      th:replace="~{fragments/inputField :: input ('Veterinarians?', 'vet', 'checkbox')}" />
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-default" type="submit">Sign member up</button>
+    </div>
+  </div>
+</form>
+
+</body>
+
+</html>

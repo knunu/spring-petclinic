@@ -15,6 +15,11 @@ public class MemberRole {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "member_id")
+	private Member member;
+
+	@Column(unique = true)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 

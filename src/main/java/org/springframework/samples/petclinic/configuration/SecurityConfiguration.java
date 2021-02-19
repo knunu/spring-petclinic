@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	private final MemberAuthenticator authenticator;
+	private final MemberAuthenticator memberAuthenticator;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -31,15 +31,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-			.antMatchers("/**").authenticated()
-			.antMatchers("/vets/**").hasRole("VET")
+		http.headers().frameOptions().sameOrigin()
+		.and()
+			.csrf().disable().authorizeRequests()
+			.antMatchers("/member").authenticated()
+			.antMatchers("/vets**").hasRole("VET")
 			.anyRequest().permitAll()
 		.and()
 			.formLogin()
 			.loginPage("/login")
 			.successForwardUrl("/")
-			.failureForwardUrl("/")
+			.failureForwardUrl("/oups")
 			.permitAll()
 		.and()
 			.logout()
@@ -52,6 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(authenticator).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(memberAuthenticator).passwordEncoder(passwordEncoder());
 	}
 }

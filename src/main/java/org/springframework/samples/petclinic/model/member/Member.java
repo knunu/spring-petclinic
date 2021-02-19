@@ -12,13 +12,12 @@ import java.util.Set;
 @Getter
 @Setter
 public class Member extends Person {
-	@Column
+	@Column(unique = true)
 	private String email;
 
 	@Column
 	private String password;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_role")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<MemberRole> roles;
 }

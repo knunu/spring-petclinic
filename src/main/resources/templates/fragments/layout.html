@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:fragment="layout (template, menu)">
+<html th:fragment="layout (template, menu)" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -58,10 +58,26 @@
             <span>Home</span>
           </li>
 
-          <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
+          <li sec:authorize="hasRole('ROLE_VET') || hasRole('ROLE_ADMIN')" th:replace="::menuItem ('/all-vets','vets','veterinarians','th-list','Veterinarians')">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             <span>Veterinarians</span>
           </li>
+
+          <li sec:authorize="isAnonymous()" th:replace="::menuItem ('/login','login','login','log-in','login')">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+            <span>Login</span>
+          </li>
+
+          <li sec:authorize="isAuthenticated()" th:replace="::menuItem ('/logout','logout','logout','log-out','logout')">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+            <span>Logout</span>
+          </li>
+
+          <li sec:authorize="isAnonymous()" th:replace="::menuItem ('/signup','signup','signup','log-in','signup')">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <span>Signup</span>
+          </li>
+
 
         </ul>
       </div>

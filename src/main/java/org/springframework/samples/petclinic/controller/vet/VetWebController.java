@@ -16,7 +16,7 @@ import java.util.List;
 public class VetWebController {
 	private final VetService vetService;
 
-	@GetMapping("/vets.html")
+	@GetMapping("/all-vets")
 	public ModelAndView showVets() {
 		ModelAndView mav = new ModelAndView("/vets/vetList");
 
@@ -30,6 +30,6 @@ public class VetWebController {
 	public String deleteAndShowVets(@RequestParam("id") String vetId) {
 		vetService.deleteVet(Integer.parseInt(vetId));
 
-		return "redirect:/vets.html";
+		return "redirect:/all-vets";
 	}
 }

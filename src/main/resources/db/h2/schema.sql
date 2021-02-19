@@ -1,3 +1,5 @@
+DROP TABLE member_roles IF EXISTS;
+DROP TABLE members IF EXISTS;
 DROP TABLE vet_specialties IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
@@ -6,6 +8,20 @@ DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
 
+CREATE TABLE members (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  first_name VARCHAR(30),
+  last_name  VARCHAR(30),
+  email      VARCHAR(80),
+  password   VARCHAR(100)
+);
+
+CREATE TABLE member_roles (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  member_id  INTEGER NOT NULL,
+  role       VARCHAR(10)
+);
+ALTER TABLE member_roles ADD CONSTRAINT fk_member_roles_owners FOREIGN KEY (member_id) REFERENCES members (id);
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
