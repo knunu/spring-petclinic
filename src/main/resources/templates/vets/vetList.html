@@ -12,14 +12,21 @@
       <tr>
         <th>Name</th>
         <th>Specialties</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="vet : ${vets.vetList}">
-        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-        <td><span th:each="specialty : ${vet.specialties}"
-          th:text="${specialty.name + ' '}" /> <span
-          th:if="${vet.nrOfSpecialties == 0}">none</span></td>
+      <tr th:each="vet : ${vets}">
+        <td th:text="${vet.getFirstName() + ' ' + vet.getLastName()}"></td>
+        <td><span th:each="specialty : ${vet.getSpecialties()}"
+          th:text="${specialty.getName() + ' '}" /> <span
+          th:if="${vet.specialties.size() == 0}">none</span></td>
+        <td>
+          <form method="post"
+               th:action="@{/vets/delete(id=${vet.getId()})}">
+            <button type="submit" class="btn btn-xs btn-danger" th:onclick="if(!(confirm('Are you sure you want to fire this veterinarian?'))) return false">X</button>
+          </form>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -14,6 +14,9 @@ public interface VetRepository extends JpaRepository<Vet, Integer> {
 
 	List<Vet> findByLastName(String lastName);
 
+	@Query("select distinct vet from Vet vet left join fetch vet.specialties specialties")
+	List<Vet> findAll();
+
 	@Query("select vet from Vet vet join vet.specialties specialties where specialties.name = :specialtyName")
 	List<Vet> findBySpecialtyName(@Param("specialtyName") String specialtyName);
 
