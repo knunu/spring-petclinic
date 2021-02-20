@@ -10,4 +10,4 @@ RUN ./gradlew clean bootJar
 FROM openjdk:8-jdk-alpine
 ENV ARTIFACT_PATH=build/libs/*.jar
 COPY --from=build $ARTIFACT_PATH app.jar
-ENTRYPOINT ["java","-Dspring.profiles.active=mysql","-Duser.timezone=Asia/Seoul","-Dreactor.netty.http.server.accessLogEnabled=true","-jar","app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-Duser.timezone=Asia/Seoul","-jar","app.jar"]
